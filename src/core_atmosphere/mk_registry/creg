@@ -1,0 +1,97 @@
+#!/bin/csh
+
+# type cstat -h for help
+
+set exist_h = ` echo $argv | grep -e "-h" | wc -w `
+
+if ($exist_h != 0) then
+   goto usage
+else
+   goto checkarg
+endif
+
+cont:
+
+set mpath     = /work/MOD3DEV/jwilliso/aaqms55/2017/src/core_atmosphere/
+
+setenv infile1 $cmaq_path/GC*${mech}*.nml
+setenv infile2 $cmaq_path/AE*${mech}*.nml
+setenv infile3 $cmaq_path/NR*${mech}*.nml
+
+echo ' ==d== GC ' $infile1
+echo ' ==d== AE ' $infile2
+echo ' ==d== NR ' $infile3
+
+/home/dwong03/mytools/mpas-tools/creg/creg.x
+
+set tfile = $mpath/Registry.xml
+
+set t1 = `grep -n 'name="nr"' $tfile | sed 's/:/ /' `
+set t2 = `grep -n 'name="tend_nr"' $tfile | sed 's/:/ /' `
+set t3 = `wc -l $tfile`
+
+@ line1 = $t1[1] + 2
+@ line2 = $t2[1] + 2
+@ line3 = $t3[1]
+
+@ diff_2_1 = $line2 - $line1
+@ diff_3_2 = $line3 - $line2
+
+head -n $line1    $tfile                     > t1_file
+head -n $line2    $tfile | tail -n $diff_2_1 > t2_file
+tail -n $diff_3_2 $tfile                     > t3_file
+
+mv t1_file      Registry.xml_$mech
+cat out1.dat >> Registry.xml_$mech
+cat t2_file  >> Registry.xml_$mech
+cat out2.dat >> Registry.xml_$mech
+cat t3_file  >> Registry.xml_$mech
+
+rm -f t2_file t3_file out1.dat out2.dat
+
+exit
+
+#---------------------------------------------------------------------
+checkarg:
+
+setenv coupled N
+
+@ lc = 0
+
+set count = $#argv
+
+while ($lc < $count)
+   @ lc++
+   if ("$argv[$lc]" == '-c') then
+      setenv coupled Y
+   else
+      @ remaining = 1 + $count - $lc
+
+      if ($remaining != 2) then
+         echo ' '
+         echo 'Error: please type creg -h to find out how to use this tool'
+         echo ' '
+         exit
+      else
+         set cmaq_path = $argv[$lc]
+         @ lc++
+         set mech      = $argv[$lc]
+      endif
+   endif
+end
+
+goto cont
+
+# -------------------------------------------------------------------------
+usage:
+echo ' '
+echo ' Purpose: create a Registry.xml for MPAS-CMAQ model with a specific version of CMAQ'
+echo ' '
+echo ' Syntax: creg path_of_CMAQ_source_code mechanism_name '
+echo ' '
+echo ' Note: this tool only work with 5.4 or higher version of CMAQ'
+echo ' '
+echo ' If you have any question, please contact David Wong, 541-3400'
+echo ' '
+
+exit

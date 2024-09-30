@@ -1,0 +1,12 @@
+./extract /home/pou/merge_dates/smk_merge_dates_201601.txt 1 8 >  daily_map_2016 
+./extract /home/pou/merge_dates/smk_merge_dates_201602.txt 1 8 >> daily_map_2016 
+./extract /home/pou/merge_dates/smk_merge_dates_201603.txt 1 8 >> daily_map_2016 
+./extract /home/pou/merge_dates/smk_merge_dates_201604.txt 1 8 >> daily_map_2016 
+./extract /home/pou/merge_dates/smk_merge_dates_201605.txt 1 8 >> daily_map_2016 
+./extract /home/pou/merge_dates/smk_merge_dates_201606.txt 1 8 >> daily_map_2016 
+./extract /home/pou/merge_dates/smk_merge_dates_201607.txt 1 8 >> daily_map_2016 
+./extract /home/pou/merge_dates/smk_merge_dates_201608.txt 1 8 >> daily_map_2016 
+./extract /home/pou/merge_dates/smk_merge_dates_201609.txt 1 8 >> daily_map_2016 
+./extract /home/pou/merge_dates/smk_merge_dates_201610.txt 1 8 >> daily_map_2016 
+./extract /home/pou/merge_dates/smk_merge_dates_201611.txt 1 8 >> daily_map_2016 
+./extract /home/pou/merge_dates/smk_merge_dates_201612.txt 1 8 >> daily_map_2016 

@@ -1,0 +1,238 @@
+( make all \
+"FC_PARALLEL = mpiifort" \
+"CC_PARALLEL = mpiicc" \
+"CXX_PARALLEL = mpiicpc" \
+"FC_SERIAL = ifort" \
+"CC_SERIAL = icc" \
+"CXX_SERIAL = icpc" \
+"FFLAGS_PROMOTION = -real-size 64" \
+"FFLAGS_OPT = -O3 -xCORE-AVX2 -fma -fp-model precise -fPIC -traceback -no-wrap-margin -convert big_endian -free -align array64byte" \
+"CFLAGS_OPT = -O3 -xCORE-AVX2 -fma -fp-model precise -fPIC -traceback" \
+"CXXFLAGS_OPT = -O3 -xCORE-AVX2 -fma -fp-model precise -fPIC -traceback" \
+"LDFLAGS_OPT = -O3" \
+"FFLAGS_DEBUG = -g -convert big_endian -free -CU -CB -check all -fpe0 -fPIC -traceback -no-wrap-margin" \
+"CFLAGS_DEBUG = -g -traceback" \
+"CXXFLAGS_DEBUG = -g -traceback" \
+"LDFLAGS_DEBUG = -g -fpe0 -traceback" \
+"FFLAGS_OMP = -qopenmp" \
+"CFLAGS_OMP = -qopenmp" \
+"CORE = atmosphere" \
+"DEBUG = true" \
+"USE_PAPI = " \
+"OPENMP = " \
+"CPPFLAGS =  -D_MPI -DMPAS_ALL_TASKS_PRINT" )
+make[1]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7'
+Checking for a usable PIO library...
+=> PIO 2 detected
+cd src; make FC="mpiifort" \
+                 CC="mpiicc" \
+                 CXX="mpiicpc" \
+                 SFC="ifort" \
+                 SCC="icc" \
+                 LINKER="mpiifort" \
+                 CFLAGS="-g -traceback" \
+                 CXXFLAGS="-g -traceback" \
+                 FFLAGS="-g -convert big_endian -free -CU -CB -check all -fpe0 -fPIC -traceback -no-wrap-margin -real-size 64" \
+                 LDFLAGS="-g -fpe0 -traceback" \
+                 RM="rm -f" \
+                 CPP="cpp -P -traditional" \
+                 CPPFLAGS="-D_MPI -DMPAS_ALL_TASKS_PRINT -DUSE_PIO2 -DCORE_ATMOSPHERE -DMPAS_NAMELIST_SUFFIX=atmosphere -DMPAS_EXE_NAME=atmosphere_model_test_dust -DMPAS_DEBUG -DMPAS_NATIVE_TIMERS -DMPAS_GIT_VERSION="unknown"" \
+                 LIBS="-L/home/jherwehe/mpas/mpas_io/pio-2.4.1/intel-18.0/lib -lpiof -lpioc -L/usr/local/apps/netcdf-4.4.1/intel-18.0/lib -lnetcdff -lnetcdf -L/usr/local/apps/pnetcdf-1.9.0/intel-18.0/lib -lpnetcdf" \
+                 CPPINCLUDES=" -I/home/jherwehe/mpas/mpas_io/pio-2.4.1/intel-18.0/include -I/usr/local/apps/netcdf-4.4.1/intel-18.0/include -I/usr/local/apps/pnetcdf-1.9.0/intel-18.0/include" \
+                 FCINCLUDES=" -I/home/jherwehe/mpas/mpas_io/pio-2.4.1/intel-18.0/include -I/usr/local/apps/netcdf-4.4.1/intel-18.0/include -I/usr/local/apps/pnetcdf-1.9.0/intel-18.0/include" \
+                 CORE="atmosphere"\
+                 AUTOCLEAN="false" \
+                 GEN_F90="false" \
+                 NAMELIST_SUFFIX="atmosphere" \
+                 EXE_NAME="atmosphere_model_test_dust"
+make[2]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7/src'
+( cd external; make FC="mpiifort" SFC="ifort" CC="mpiicc" SCC="icc" FFLAGS="-g -convert big_endian -free -CU -CB -check all -fpe0 -fPIC -traceback -no-wrap-margin -real-size 64" CFLAGS="-g -traceback" CPP="cpp -P -traditional" NETCDF="/usr/local/apps/netcdf-4.4.1/intel-18.0" CORE="atmosphere" all )
+make[3]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7/src/external'
+( cd esmf_time_f90; make FC="mpiifort -g -convert big_endian -free -CU -CB -check all -fpe0 -fPIC -traceback -no-wrap-margin -real-size 64" CPP="cpp -P -traditional" CPPFLAGS="-D_MPI -DMPAS_ALL_TASKS_PRINT -DUSE_PIO2 -DCORE_ATMOSPHERE -DMPAS_NAMELIST_SUFFIX=atmosphere -DMPAS_EXE_NAME=atmosphere_model_test_dust -DMPAS_DEBUG -DMPAS_NATIVE_TIMERS -DMPAS_GIT_VERSION=unknown -DHIDE_MPI" GEN_F90=false )
+make[4]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7/src/external/esmf_time_f90'
+ar -ru libesmf_time.a *.o
+make[4]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7/src/external/esmf_time_f90'
+( cd ezxml; make )
+make[4]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7/src/external/ezxml'
+rm -f *.o *.i
+make -j 1 library
+make[5]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7/src/external/ezxml'
+mpiicc -g -traceback -D_MPI -DMPAS_ALL_TASKS_PRINT -DUSE_PIO2 -DCORE_ATMOSPHERE -DMPAS_NAMELIST_SUFFIX=atmosphere -DMPAS_EXE_NAME=atmosphere_model_test_dust -DMPAS_DEBUG -DMPAS_NATIVE_TIMERS -DMPAS_GIT_VERSION=unknown -c ezxml.c
+make[5]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7/src/external/ezxml'
+make[4]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7/src/external/ezxml'
+make[3]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7/src/external'
+( cd framework; make CPPFLAGS="-D_MPI -DMPAS_ALL_TASKS_PRINT -DUSE_PIO2 -DCORE_ATMOSPHERE -DMPAS_NAMELIST_SUFFIX=atmosphere -DMPAS_EXE_NAME=atmosphere_model_test_dust -DMPAS_DEBUG -DMPAS_NATIVE_TIMERS -DMPAS_GIT_VERSION=unknown" CPPINCLUDES="-I/home/jherwehe/mpas/mpas_io/pio-2.4.1/intel-18.0/include -I/usr/local/apps/netcdf-4.4.1/intel-18.0/include -I/usr/local/apps/pnetcdf-1.9.0/intel-18.0/include" all ) 
+make[3]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7/src/framework'
+ar -ru libframework.a mpas_kind_types.o mpas_framework.o mpas_timer.o mpas_timekeeping.o mpas_constants.o mpas_attlist.o mpas_hash.o mpas_sort.o mpas_block_decomp.o mpas_block_creator.o mpas_dmpar.o mpas_abort.o mpas_decomp.o mpas_threading.o mpas_io.o mpas_io_streams.o mpas_bootstrapping.o mpas_io_units.o mpas_stream_manager.o mpas_stream_list.o mpas_forcing.o mpas_c_interfacing.o random_id.o pool_hash.o mpas_derived_types.o mpas_domain_routines.o mpas_field_routines.o mpas_pool_routines.o xml_stream_parser.o regex_matching.o mpas_field_accessor.o mpas_log.o ../external/ezxml/ezxml.o
+make[3]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7/src/framework'
+ln -sf framework/libframework.a libframework.a
+( cd operators; make CPPFLAGS="-D_MPI -DMPAS_ALL_TASKS_PRINT -DUSE_PIO2 -DCORE_ATMOSPHERE -DMPAS_NAMELIST_SUFFIX=atmosphere -DMPAS_EXE_NAME=atmosphere_model_test_dust -DMPAS_DEBUG -DMPAS_NATIVE_TIMERS -DMPAS_GIT_VERSION=unknown" CPPINCLUDES="-I/home/jherwehe/mpas/mpas_io/pio-2.4.1/intel-18.0/include -I/usr/local/apps/netcdf-4.4.1/intel-18.0/include -I/usr/local/apps/pnetcdf-1.9.0/intel-18.0/include" all ) 
+make[3]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7/src/operators'
+ar -ru libops.a mpas_vector_operations.o mpas_matrix_operations.o mpas_tensor_operations.o mpas_rbf_interpolation.o mpas_vector_reconstruction.o mpas_spline_interpolation.o mpas_tracer_advection_helpers.o mpas_tracer_advection_mono.o mpas_tracer_advection_std.o mpas_geometry_utils.o
+make[3]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7/src/operators'
+ln -sf operators/libops.a libops.a
+(cd tools; make CPPFLAGS="-D_MPI -DMPAS_ALL_TASKS_PRINT -DUSE_PIO2 -DCORE_ATMOSPHERE -DMPAS_NAMELIST_SUFFIX=atmosphere -DMPAS_EXE_NAME=atmosphere_model_test_dust -DMPAS_DEBUG -DMPAS_NATIVE_TIMERS -DMPAS_GIT_VERSION=unknown" CC="icc" CFLAGS="-g -traceback")
+make[3]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7/src/tools'
+( make build_registry CPPFLAGS="-D_MPI -DMPAS_ALL_TASKS_PRINT -DUSE_PIO2 -DCORE_ATMOSPHERE -DMPAS_NAMELIST_SUFFIX=atmosphere -DMPAS_EXE_NAME=atmosphere_model_test_dust -DMPAS_DEBUG -DMPAS_NATIVE_TIMERS -DMPAS_GIT_VERSION=unknown" CC="icc" CFLAGS="-g -traceback" )
+make[4]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7/src/tools'
+*** Building MPAS tools from source ***
+(cd registry; make CPPFLAGS="-D_MPI -DMPAS_ALL_TASKS_PRINT -DUSE_PIO2 -DCORE_ATMOSPHERE -DMPAS_NAMELIST_SUFFIX=atmosphere -DMPAS_EXE_NAME=atmosphere_model_test_dust -DMPAS_DEBUG -DMPAS_NATIVE_TIMERS -DMPAS_GIT_VERSION=unknown" CC="icc" CFLAGS="-g -traceback")
+make[5]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7/src/tools/registry'
+(cd ../../external/ezxml; make CFLAGS="-g -traceback ")
+make[6]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7/src/external/ezxml'
+rm -f *.o *.i
+make -j 1 library
+make[7]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7/src/external/ezxml'
+icc -g -traceback  -D_MPI -DMPAS_ALL_TASKS_PRINT -DUSE_PIO2 -DCORE_ATMOSPHERE -DMPAS_NAMELIST_SUFFIX=atmosphere -DMPAS_EXE_NAME=atmosphere_model_test_dust -DMPAS_DEBUG -DMPAS_NATIVE_TIMERS -DMPAS_GIT_VERSION=unknown -c ezxml.c
+make[7]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7/src/external/ezxml'
+make[6]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7/src/external/ezxml'
+#(make ezxml CPPFLAGS="-D_MPI -DMPAS_ALL_TASKS_PRINT -DUSE_PIO2 -DCORE_ATMOSPHERE -DMPAS_NAMELIST_SUFFIX=atmosphere -DMPAS_EXE_NAME=atmosphere_model_test_dust -DMPAS_DEBUG -DMPAS_NATIVE_TIMERS -DMPAS_GIT_VERSION=unknown" CPPINCLUDES="-I/home/jherwehe/mpas/mpas_io/pio-2.4.1/intel-18.0/include -I/usr/local/apps/netcdf-4.4.1/intel-18.0/include -I/usr/local/apps/pnetcdf-1.9.0/intel-18.0/include")
+(make parse CPPFLAGS="-D_MPI -DMPAS_ALL_TASKS_PRINT -DUSE_PIO2 -DCORE_ATMOSPHERE -DMPAS_NAMELIST_SUFFIX=atmosphere -DMPAS_EXE_NAME=atmosphere_model_test_dust -DMPAS_DEBUG -DMPAS_NATIVE_TIMERS -DMPAS_GIT_VERSION=unknown" CPPINCLUDES="-I/home/jherwehe/mpas/mpas_io/pio-2.4.1/intel-18.0/include -I/usr/local/apps/netcdf-4.4.1/intel-18.0/include -I/usr/local/apps/pnetcdf-1.9.0/intel-18.0/include")
+make[6]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7/src/tools/registry'
+make[6]: `parse' is up to date.
+make[6]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7/src/tools/registry'
+make[5]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7/src/tools/registry'
+make[4]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7/src/tools'
+( make build_input_gen CPPFLAGS="-D_MPI -DMPAS_ALL_TASKS_PRINT -DUSE_PIO2 -DCORE_ATMOSPHERE -DMPAS_NAMELIST_SUFFIX=atmosphere -DMPAS_EXE_NAME=atmosphere_model_test_dust -DMPAS_DEBUG -DMPAS_NATIVE_TIMERS -DMPAS_GIT_VERSION=unknown" CC="icc" CFLAGS="-g -traceback" )
+make[4]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7/src/tools'
+*** Building MPAS tools from source ***
+(cd input_gen; make CPPFLAGS="-D_MPI -DMPAS_ALL_TASKS_PRINT -DUSE_PIO2 -DCORE_ATMOSPHERE -DMPAS_NAMELIST_SUFFIX=atmosphere -DMPAS_EXE_NAME=atmosphere_model_test_dust -DMPAS_DEBUG -DMPAS_NATIVE_TIMERS -DMPAS_GIT_VERSION=unknown" CC="icc" CFLAGS="-g -traceback")
+make[5]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7/src/tools/input_gen'
+(cd ../../external/ezxml; make CFLAGS="-g -traceback ")
+make[6]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7/src/external/ezxml'
+rm -f *.o *.i
+make -j 1 library
+make[7]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7/src/external/ezxml'
+icc -g -traceback  -D_MPI -DMPAS_ALL_TASKS_PRINT -DUSE_PIO2 -DCORE_ATMOSPHERE -DMPAS_NAMELIST_SUFFIX=atmosphere -DMPAS_EXE_NAME=atmosphere_model_test_dust -DMPAS_DEBUG -DMPAS_NATIVE_TIMERS -DMPAS_GIT_VERSION=unknown -c ezxml.c
+make[7]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7/src/external/ezxml'
+make[6]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7/src/external/ezxml'
+(make -j 1 namelist_gen CPPFLAGS="-D_MPI -DMPAS_ALL_TASKS_PRINT -DUSE_PIO2 -DCORE_ATMOSPHERE -DMPAS_NAMELIST_SUFFIX=atmosphere -DMPAS_EXE_NAME=atmosphere_model_test_dust -DMPAS_DEBUG -DMPAS_NATIVE_TIMERS -DMPAS_GIT_VERSION=unknown" CPPINCLUDES="-I/home/jherwehe/mpas/mpas_io/pio-2.4.1/intel-18.0/include -I/usr/local/apps/netcdf-4.4.1/intel-18.0/include -I/usr/local/apps/pnetcdf-1.9.0/intel-18.0/include")
+make[6]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7/src/tools/input_gen'
+(cd ../../external/ezxml; make CFLAGS="-g -traceback ")
+make[7]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7/src/external/ezxml'
+rm -f *.o *.i
+make -j 1 library
+make[8]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7/src/external/ezxml'
+icc -g -traceback  -D_MPI -DMPAS_ALL_TASKS_PRINT -DUSE_PIO2 -DCORE_ATMOSPHERE -DMPAS_NAMELIST_SUFFIX=atmosphere -DMPAS_EXE_NAME=atmosphere_model_test_dust -DMPAS_DEBUG -DMPAS_NATIVE_TIMERS -DMPAS_GIT_VERSION=unknown -c ezxml.c
+make[8]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7/src/external/ezxml'
+make[7]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7/src/external/ezxml'
+icc -D_MPI -DMPAS_ALL_TASKS_PRINT -DUSE_PIO2 -DCORE_ATMOSPHERE -DMPAS_NAMELIST_SUFFIX=atmosphere -DMPAS_EXE_NAME=atmosphere_model_test_dust -DMPAS_DEBUG -DMPAS_NATIVE_TIMERS -DMPAS_GIT_VERSION=unknown -g -traceback -I../../external/ezxml -o namelist_gen namelist_gen.o test_functions.o ../../external/ezxml/ezxml.o
+make[6]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7/src/tools/input_gen'
+(make -j 1 streams_gen CPPFLAGS="-D_MPI -DMPAS_ALL_TASKS_PRINT -DUSE_PIO2 -DCORE_ATMOSPHERE -DMPAS_NAMELIST_SUFFIX=atmosphere -DMPAS_EXE_NAME=atmosphere_model_test_dust -DMPAS_DEBUG -DMPAS_NATIVE_TIMERS -DMPAS_GIT_VERSION=unknown" CPPINCLUDES="-I/home/jherwehe/mpas/mpas_io/pio-2.4.1/intel-18.0/include -I/usr/local/apps/netcdf-4.4.1/intel-18.0/include -I/usr/local/apps/pnetcdf-1.9.0/intel-18.0/include")
+make[6]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7/src/tools/input_gen'
+(cd ../../external/ezxml; make CFLAGS="-g -traceback ")
+make[7]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7/src/external/ezxml'
+rm -f *.o *.i
+make -j 1 library
+make[8]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7/src/external/ezxml'
+icc -g -traceback  -D_MPI -DMPAS_ALL_TASKS_PRINT -DUSE_PIO2 -DCORE_ATMOSPHERE -DMPAS_NAMELIST_SUFFIX=atmosphere -DMPAS_EXE_NAME=atmosphere_model_test_dust -DMPAS_DEBUG -DMPAS_NATIVE_TIMERS -DMPAS_GIT_VERSION=unknown -c ezxml.c
+make[8]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7/src/external/ezxml'
+make[7]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7/src/external/ezxml'
+icc -D_MPI -DMPAS_ALL_TASKS_PRINT -DUSE_PIO2 -DCORE_ATMOSPHERE -DMPAS_NAMELIST_SUFFIX=atmosphere -DMPAS_EXE_NAME=atmosphere_model_test_dust -DMPAS_DEBUG -DMPAS_NATIVE_TIMERS -DMPAS_GIT_VERSION=unknown -g -traceback -I../../external/ezxml -o streams_gen streams_gen.o test_functions.o ../../external/ezxml/ezxml.o
+make[6]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7/src/tools/input_gen'
+make[5]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7/src/tools/input_gen'
+make[4]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7/src/tools'
+make[3]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7/src/tools'
+( cd core_atmosphere; make CPPFLAGS="-D_MPI -DMPAS_ALL_TASKS_PRINT -DUSE_PIO2 -DCORE_ATMOSPHERE -DMPAS_NAMELIST_SUFFIX=atmosphere -DMPAS_EXE_NAME=atmosphere_model_test_dust -DMPAS_DEBUG -DMPAS_NATIVE_TIMERS -DMPAS_GIT_VERSION=unknown" CPPINCLUDES="-I/home/jherwehe/mpas/mpas_io/pio-2.4.1/intel-18.0/include -I/usr/local/apps/netcdf-4.4.1/intel-18.0/include -I/usr/local/apps/pnetcdf-1.9.0/intel-18.0/include" REG_PARSE="/work/MOD3DEV/jwilliso/aaqms7/src/tools/registry/parse" gen_includes )
+make[3]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7/src/core_atmosphere'
+cpp -P -traditional -D_MPI -DMPAS_ALL_TASKS_PRINT -DUSE_PIO2 -DCORE_ATMOSPHERE -DMPAS_NAMELIST_SUFFIX=atmosphere -DMPAS_EXE_NAME=atmosphere_model_test_dust -DMPAS_DEBUG -DMPAS_NATIVE_TIMERS -DMPAS_GIT_VERSION=unknown -I/home/jherwehe/mpas/mpas_io/pio-2.4.1/intel-18.0/include -I/usr/local/apps/netcdf-4.4.1/intel-18.0/include -I/usr/local/apps/pnetcdf-1.9.0/intel-18.0/include Registry.xml > Registry_processed.xml
+(if [ ! -d inc ]; then mkdir -p inc; fi) # To generate *.inc files
+(cd inc; /work/MOD3DEV/jwilliso/aaqms7/src/tools/registry/parse < ../Registry_processed.xml )
+Reading registry file from standard input
+Warning: runtime_format attribute has no effect for immutable stream "lbc_in".
+---- GENERATING IMMUTABLE STREAMS ----
+make[3]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7/src/core_atmosphere'
+( cd core_atmosphere; make CPPFLAGS="-D_MPI -DMPAS_ALL_TASKS_PRINT -DUSE_PIO2 -DCORE_ATMOSPHERE -DMPAS_NAMELIST_SUFFIX=atmosphere -DMPAS_EXE_NAME=atmosphere_model_test_dust -DMPAS_DEBUG -DMPAS_NATIVE_TIMERS -DMPAS_GIT_VERSION=unknown" CPPINCLUDES="-I/home/jherwehe/mpas/mpas_io/pio-2.4.1/intel-18.0/include -I/usr/local/apps/netcdf-4.4.1/intel-18.0/include -I/usr/local/apps/pnetcdf-1.9.0/intel-18.0/include" NL_GEN="/work/MOD3DEV/jwilliso/aaqms7/src/tools/input_gen/namelist_gen" ST_GEN="/work/MOD3DEV/jwilliso/aaqms7/src/tools/input_gen/streams_gen" core_input_gen )
+make[3]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7/src/core_atmosphere'
+if [ ! -e default_inputs ]; then  mkdir default_inputs; fi
+( cd default_inputs; /work/MOD3DEV/jwilliso/aaqms7/src/tools/input_gen/namelist_gen ../Registry_processed.xml namelist.atmosphere in_defaults=true )
+( cd default_inputs; /work/MOD3DEV/jwilliso/aaqms7/src/tools/input_gen/streams_gen ../Registry_processed.xml streams.atmosphere stream_list.atmosphere. listed )
+make[3]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7/src/core_atmosphere'
+( cd core_atmosphere; make CPPFLAGS="-D_MPI -DMPAS_ALL_TASKS_PRINT -DUSE_PIO2 -DCORE_ATMOSPHERE -DMPAS_NAMELIST_SUFFIX=atmosphere -DMPAS_EXE_NAME=atmosphere_model_test_dust -DMPAS_DEBUG -DMPAS_NATIVE_TIMERS -DMPAS_GIT_VERSION=unknown" CPPINCLUDES="-I/home/jherwehe/mpas/mpas_io/pio-2.4.1/intel-18.0/include -I/usr/local/apps/netcdf-4.4.1/intel-18.0/include -I/usr/local/apps/pnetcdf-1.9.0/intel-18.0/include" all ) 
+make[3]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7/src/core_atmosphere'
+( cd physics; make all )
+make[4]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7/src/core_atmosphere/physics'
+./checkout_data_files.sh
+*** Compatible versions of WRF physics tables appear to already exist; no need to obtain them again ***
+ar -ru libphys.a mpas_atmphys_constants.o mpas_atmphys_date_time.o mpas_atmphys_functions.o mpas_atmphys_utilities.o
+(cd physics_wrf; make all COREDEF="-Dmpas")
+make[5]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7/src/core_atmosphere/physics/physics_wrf'
+echo "****** compiling physics_wrf ******"
+****** compiling physics_wrf ******
+ar -ru ./../libphys.a libmassv.o module_bl_gwdo.o module_bl_mynn.o module_bl_ysu.o module_bl_acm.o module_cam_error_function.o module_cam_shr_kind_mod.o module_cam_support.o module_cu_gf.mpas.o module_cu_tiedtke.o module_cu_ntiedtke.o module_cu_kfeta.o module_mp_kessler.o module_mp_radar.o module_mp_thompson.o module_mp_thompson_cldfra3.o module_mp_wsm6.o module_ra_cam.o module_ra_cam_support.o module_ra_rrtmg_lw.o module_ra_rrtmg_sw.o module_ra_rrtmg_vinterp.o module_sf_bem.o module_sf_bep.o module_sf_bep_bem.o module_sf_sfcdiags.o module_sf_mynn.o module_sf_noahdrv.o module_sf_noahlsm.o module_sf_noahlsm_glacial_only.o module_sf_noah_seaice.o module_sf_noah_seaice_drv.o module_sf_pxlsm.o module_sf_pxlsm_data.o module_sf_oml.o module_sf_sfclay.o module_sf_pxsfclay.o module_sf_urban.o
+make[5]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7/src/core_atmosphere/physics/physics_wrf'
+(make phys_interface COREDEF="-Dmpas")
+make[5]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7/src/core_atmosphere/physics'
+make[5]: Nothing to be done for `phys_interface'.
+make[5]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7/src/core_atmosphere/physics'
+ar -ru libphys.a mpas_atmphys_camrad_init.o mpas_atmphys_control.o mpas_atmphys_driver.o mpas_atmphys_driver_cloudiness.o mpas_atmphys_driver_convection.o mpas_atmphys_fdda.o mpas_atmphys_driver_gwdo.o mpas_atmphys_driver_lsm.o mpas_atmphys_driver_microphysics.o mpas_atmphys_driver_oml.o mpas_atmphys_driver_pbl.o mpas_atmphys_driver_radiation_lw.o mpas_atmphys_driver_radiation_sw.o mpas_atmphys_driver_sfclayer.o mpas_atmphys_finalize.o mpas_atmphys_init.o mpas_atmphys_init_microphysics.o mpas_atmphys_interface.o mpas_atmphys_landuse.o mpas_atmphys_lsm_noahinit.o mpas_atmphys_manager.o mpas_atmphys_o3climatology.o mpas_atmphys_packages.o mpas_atmphys_rrtmg_lwinit.o mpas_atmphys_rrtmg_swinit.o mpas_atmphys_todynamics.o mpas_atmphys_update_surface.o mpas_atmphys_update.o mpas_atmphys_vars.o
+make[4]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7/src/core_atmosphere/physics'
+( mkdir libphys; cd libphys; ar -x ../physics/libphys.a )
+mkdir: cannot create directory 'libphys': File exists
+( cd ../..; ln -sf ./src/core_atmosphere/physics/physics_wrf/files/*TBL .)
+( cd ../..; ln -sf ./src/core_atmosphere/physics/physics_wrf/files/*DATA* .)
+( cd cmaq; make all )
+make[4]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7/src/core_atmosphere/cmaq_08_16_2021'
+mpiifort -c -fixed -132 -O0 -g -check bounds -check uninit -fpe0 -fno-alias -ftrapuv -traceback -I/home/jherwehe/mpas/mpas_io/pio-2.4.1/intel-18.0/include -I/usr/local/apps/netcdf-4.4.1/intel-18.0/include -I/usr/local/apps/pnetcdf-1.9.0/intel-18.0/include -I../../framework -I../../operators -I../physics -I../physics/physics_wrf -I../../external/esmf_time_f90 -I/work/MOD3DEV/jwilliso/aaqms7/mio -I. -I/home/jherwehe/mpas/mpas_io/pio-2.4.1/intel-18.0/include -I/usr/local/apps/netcdf-4.4.1/intel-18.0/include -I/usr/local/apps/pnetcdf-1.9.0/intel-18.0/include -I../../framework -I../../operators -I../physics -I../physics/physics_wrf -I../../external/esmf_time_f90 -I/work/MOD3DEV/jwilliso/aaqms7/mio -I. -Dparallel -Dmpas -Dverbose_aero -D_MPI -DMPAS_ALL_TASKS_PRINT -DUSE_PIO2 -DCORE_ATMOSPHERE -DMPAS_NAMELIST_SUFFIX=atmosphere -DMPAS_EXE_NAME=atmosphere_model_test_dust -DMPAS_DEBUG -DMPAS_NATIVE_TIMERS -DMPAS_GIT_VERSION=unknown -DSUBST_PE_COMM=\"./PE_COMM.EXT\" -DSUBST_CONST=\"./CONST.EXT\" -DSUBST_FILES_ID=\"./FILES_CTM.EXT\" -DSUBST_EMISPRM=\"./EMISPRM.EXT\" -DSUBST_MPI=\"/mpi/include/mpif.h\" ASX_DATA_MOD.F
+mpiifort -c -fixed -132 -O0 -g -check bounds -check uninit -fpe0 -fno-alias -ftrapuv -traceback -I/home/jherwehe/mpas/mpas_io/pio-2.4.1/intel-18.0/include -I/usr/local/apps/netcdf-4.4.1/intel-18.0/include -I/usr/local/apps/pnetcdf-1.9.0/intel-18.0/include -I../../framework -I../../operators -I../physics -I../physics/physics_wrf -I../../external/esmf_time_f90 -I/work/MOD3DEV/jwilliso/aaqms7/mio -I. -I/home/jherwehe/mpas/mpas_io/pio-2.4.1/intel-18.0/include -I/usr/local/apps/netcdf-4.4.1/intel-18.0/include -I/usr/local/apps/pnetcdf-1.9.0/intel-18.0/include -I../../framework -I../../operators -I../physics -I../physics/physics_wrf -I../../external/esmf_time_f90 -I/work/MOD3DEV/jwilliso/aaqms7/mio -I. -Dparallel -Dmpas -Dverbose_aero -D_MPI -DMPAS_ALL_TASKS_PRINT -DUSE_PIO2 -DCORE_ATMOSPHERE -DMPAS_NAMELIST_SUFFIX=atmosphere -DMPAS_EXE_NAME=atmosphere_model_test_dust -DMPAS_DEBUG -DMPAS_NATIVE_TIMERS -DMPAS_GIT_VERSION=unknown -DSUBST_PE_COMM=\"./PE_COMM.EXT\" -DSUBST_CONST=\"./CONST.EXT\" -DSUBST_FILES_ID=\"./FILES_CTM.EXT\" -DSUBST_EMISPRM=\"./EMISPRM.EXT\" -DSUBST_MPI=\"/mpi/include/mpif.h\" AERO_EMIS.F
+mpiifort -c -fixed -132 -O0 -g -check bounds -check uninit -fpe0 -fno-alias -ftrapuv -traceback -I/home/jherwehe/mpas/mpas_io/pio-2.4.1/intel-18.0/include -I/usr/local/apps/netcdf-4.4.1/intel-18.0/include -I/usr/local/apps/pnetcdf-1.9.0/intel-18.0/include -I../../framework -I../../operators -I../physics -I../physics/physics_wrf -I../../external/esmf_time_f90 -I/work/MOD3DEV/jwilliso/aaqms7/mio -I. -I/home/jherwehe/mpas/mpas_io/pio-2.4.1/intel-18.0/include -I/usr/local/apps/netcdf-4.4.1/intel-18.0/include -I/usr/local/apps/pnetcdf-1.9.0/intel-18.0/include -I../../framework -I../../operators -I../physics -I../physics/physics_wrf -I../../external/esmf_time_f90 -I/work/MOD3DEV/jwilliso/aaqms7/mio -I. -Dparallel -Dmpas -Dverbose_aero -D_MPI -DMPAS_ALL_TASKS_PRINT -DUSE_PIO2 -DCORE_ATMOSPHERE -DMPAS_NAMELIST_SUFFIX=atmosphere -DMPAS_EXE_NAME=atmosphere_model_test_dust -DMPAS_DEBUG -DMPAS_NATIVE_TIMERS -DMPAS_GIT_VERSION=unknown -DSUBST_PE_COMM=\"./PE_COMM.EXT\" -DSUBST_CONST=\"./CONST.EXT\" -DSUBST_FILES_ID=\"./FILES_CTM.EXT\" -DSUBST_EMISPRM=\"./EMISPRM.EXT\" -DSUBST_MPI=\"/mpi/include/mpif.h\" aero_depv.F
+ar -ru libcmaq.a mydata.o STM_VARS.o universal_data_module.o prog_interrupt_module.o get_env_mod.o RXNS_DATA_MODULE.o replacement_util_module.o RUNTIME_VARS.o coupler_mod.o mpas_atmchem_interface.o VGRD_DEFN.o CGRID_SPCS.o PA_DEFN.o HGRD_DEFN.o UDTYPES.o AVG_CONC.o DEPVVARS.o VDIFF_DATA.o GRID_CONF.o LSM_MOD.o depv_data_module.o biog_emis_param_module.o crop_data_module.o em_param_module.o AEROMET_DATA.o AERO_DATA.o stack_group_data_module.o STK_PRMS.o BIDI_MOD.o EMIS_VARS.o BIOG_EMIS.o lus_data_module.o LUS_DEFN.o centralized_io_util_module.o centralized_io_module.o ASX_DATA_MOD.o DEPV_DEFN.o LTNG_DEFN.o DUST_EMIS.o PCGRID_DEFN.o STK_EMIS.o SSEMIS.o PTBILIN.o PRECURSOR_DATA.o VDIFF_MAP.o STD_CONC.o CSQY_DATA.o CLOUD_OPTICS.o complex_number_module.o twoway_rrtmg_aero_optics.o SOA_DEFN.o AERO_PHOTDATA.o RXNS_FUNC_MODULE.o AERO_BUDGET.o AERO_EMIS.o BEIS_DEFN.o PTMET.o canopy_nox_mod.o BDSNP_MOD_EPIC.o all_megan.o meg_hrno_mod.o mgn2mech_mod.o MEGAN_DEFN.o AEROSOL_CHEMISTRY.o PT3D_DEFN.o PHOT_MOD.o PAGRD_DEFN.o PA_IRR_CTL.o PA_IRR_module.o MGEMIS.o WVEL_DEFN.o EMIS_DEFN.o HGSIM.o STM_MODULE.o vertext_module.o mpcomm_init.o advstep.o driver.o hveloc.o sciproc.o wr_aconc.o wr_cgrid.o wr_conc.o wr_init.o diffmsg.o flcheck.o grdcheck.o initscen.o load_cgrid.o unload_cgrid.o opaconc.o opconc.o VDIFF_DIAG.o SEDIMENTATION.o aero_depv.o aero_sedv.o conv_cgrid.o eddyx.o matrix1.o opddep.o rddepv.o tri.o vdiffacmx.o vdiffproc.o ABFLUX_MOD.o cgrid_depv.o gas_depv_map.o m3dry.o opdepv_diag.o cropcal.o opemis.o tfabove.o tfbelow.o beis3.o checkmem.o chkgrid.o czangle.o getfline.o getparb.o hrno.o parsline.o tmpbeis.o wrdaymsg.o delta_zs.o fire_plmris.o openlayout.o oppt3d_diag.o plmris.o plsprd.o preplm.o write3_distr.o PHOT_MET_DATA.o PHOTOLYSIS_ALBEDO.o SEAS_STRAT_O3_MIN.o concld_prop_acm.o o3totcol.o opphot.o phot.o DEGRADE_SETUP_TOX.o rbdata_mod.o degrade.o degrade_data.o final_degrade.o find_degraded.o init_degrade.o rbdecomp.o rbdriver.o rbfeval.o rbinit.o rbjacob.o rbsolve.o rbsolver.o rbsparse.o PMDIAG_DATA.o aero_driver.o aero_subs.o coags.o getpar.o isocom.o isofwd.o isorev.o opapmdiag.o oppmdiag.o AQ_DATA.o acmcld.o aqchem.o aq_map.o cldproc_acm.o convcld_acm.o getalpha.o hlconst.o indexn.o opwdep.o rescld.o scavwdep.o PA_GLOBAL.o PA_IPRDEF.o PA_VARS.o PA_PARSE.o PA_IPRVARS.o pa_compmech.o pa_datagen.o pa_errcheck.o pa_getcoef.o pa_getcycle.o pa_getdesc.o pa_getfamily.o pa_getiprout.o pa_getirrout.o pa_getrxns.o pa_getrxnsum.o pa_init.o pa_mkhdr.o pa_molcloss.o pa_molcprod.o pa_output.o pa_read.o pa_report.o pa_setup_ipr.o pa_setup_irr.o pa_update.o pa_wrtpadefn.o log_header.o cksummer.o findex.o lstepf.o setup_logdev.o subhdomain.o subhfile.o
+make[4]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7/src/core_atmosphere/cmaq_08_16_2021'
+( mkdir libcmaq; cd libcmaq; ar -x ../cmaq/libcmaq.a )
+mkdir: cannot create directory 'libcmaq': File exists
+( cd dynamics; make all PHYSICS="-DDO_PHYSICS" )
+make[4]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7/src/core_atmosphere/dynamics'
+make[4]: Nothing to be done for `all'.
+make[4]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7/src/core_atmosphere/dynamics'
+( cd diagnostics; make all )
+make[4]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7/src/core_atmosphere/diagnostics'
+make[4]: Nothing to be done for `all'.
+make[4]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7/src/core_atmosphere/diagnostics'
+rm -f mpas_atm_core.o mpas_atm_core.mod
+mpiifort -D_MPI -DMPAS_ALL_TASKS_PRINT -DUSE_PIO2 -DCORE_ATMOSPHERE -DMPAS_NAMELIST_SUFFIX=atmosphere -DMPAS_EXE_NAME=atmosphere_model_test_dust -DMPAS_DEBUG -DMPAS_NATIVE_TIMERS -DMPAS_GIT_VERSION=unknown -DDO_PHYSICS -g -convert big_endian -free -CU -CB -check all -fpe0 -fPIC -traceback -no-wrap-margin -real-size 64 -c mpas_atm_core.F -I/home/jherwehe/mpas/mpas_io/pio-2.4.1/intel-18.0/include -I/usr/local/apps/netcdf-4.4.1/intel-18.0/include -I/usr/local/apps/pnetcdf-1.9.0/intel-18.0/include -I/home/jherwehe/mpas/mpas_io/pio-2.4.1/intel-18.0/include -I/usr/local/apps/netcdf-4.4.1/intel-18.0/include -I/usr/local/apps/pnetcdf-1.9.0/intel-18.0/include -I./inc -I../framework -I../operators -I./physics -I./cmaq -I./dynamics -I./diagnostics -I./physics/physics_wrf -I../external/esmf_time_f90
+rm -f mpas_atm_core_interface.o mpas_atm_core_interface.mod
+mpiifort -D_MPI -DMPAS_ALL_TASKS_PRINT -DUSE_PIO2 -DCORE_ATMOSPHERE -DMPAS_NAMELIST_SUFFIX=atmosphere -DMPAS_EXE_NAME=atmosphere_model_test_dust -DMPAS_DEBUG -DMPAS_NATIVE_TIMERS -DMPAS_GIT_VERSION=unknown -DDO_PHYSICS -g -convert big_endian -free -CU -CB -check all -fpe0 -fPIC -traceback -no-wrap-margin -real-size 64 -c mpas_atm_core_interface.F -I/home/jherwehe/mpas/mpas_io/pio-2.4.1/intel-18.0/include -I/usr/local/apps/netcdf-4.4.1/intel-18.0/include -I/usr/local/apps/pnetcdf-1.9.0/intel-18.0/include -I/home/jherwehe/mpas/mpas_io/pio-2.4.1/intel-18.0/include -I/usr/local/apps/netcdf-4.4.1/intel-18.0/include -I/usr/local/apps/pnetcdf-1.9.0/intel-18.0/include -I./inc -I../framework -I../operators -I./physics -I./cmaq -I./dynamics -I./diagnostics -I./physics/physics_wrf -I../external/esmf_time_f90
+ar -ru libdycore.a mpas_atm_core.o mpas_atm_core_interface.o mpas_atm_dimensions.o mpas_atm_threading.o libcmaq/*.o dynamics/*.o libphys/*.o diagnostics/*.o
+( cd utils; make all )
+make[4]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7/src/core_atmosphere/utils'
+mpiifort -g -fpe0 -traceback -o build_tables build_tables.o atmphys_build_tables_thompson.o -L../../framework -L../physics -lphys -lframework -L/home/jherwehe/mpas/mpas_io/pio-2.4.1/intel-18.0/lib -lpiof -lpioc -L/usr/local/apps/netcdf-4.4.1/intel-18.0/lib -lnetcdff -lnetcdf -L/usr/local/apps/pnetcdf-1.9.0/intel-18.0/lib -lpnetcdf -L../../external/esmf_time_f90 -lesmf_time
+mv build_tables ../../..
+make[4]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7/src/core_atmosphere/utils'
+make[3]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7/src/core_atmosphere'
+ln -sf core_atmosphere/libdycore.a libdycore.a
+( cd driver; make CPPFLAGS="-D_MPI -DMPAS_ALL_TASKS_PRINT -DUSE_PIO2 -DCORE_ATMOSPHERE -DMPAS_NAMELIST_SUFFIX=atmosphere -DMPAS_EXE_NAME=atmosphere_model_test_dust -DMPAS_DEBUG -DMPAS_NATIVE_TIMERS -DMPAS_GIT_VERSION=unknown" CPPINCLUDES="-I/home/jherwehe/mpas/mpas_io/pio-2.4.1/intel-18.0/include -I/usr/local/apps/netcdf-4.4.1/intel-18.0/include -I/usr/local/apps/pnetcdf-1.9.0/intel-18.0/include" all ) 
+make[3]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7/src/driver'
+(make clean)
+make[4]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7/src/driver'
+rm -f *.o *.mod *.f90
+rm -f *.i
+make[4]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7/src/driver'
+(make driver)
+make[4]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7/src/driver'
+rm -f mpas_subdriver.o mpas_subdriver.mod
+mpiifort -D_MPI -DMPAS_ALL_TASKS_PRINT -DUSE_PIO2 -DCORE_ATMOSPHERE -DMPAS_NAMELIST_SUFFIX=atmosphere -DMPAS_EXE_NAME=atmosphere_model_test_dust -DMPAS_DEBUG -DMPAS_NATIVE_TIMERS -DMPAS_GIT_VERSION=unknown -g -convert big_endian -free -CU -CB -check all -fpe0 -fPIC -traceback -no-wrap-margin -real-size 64 -c mpas_subdriver.F -I/home/jherwehe/mpas/mpas_io/pio-2.4.1/intel-18.0/include -I/usr/local/apps/netcdf-4.4.1/intel-18.0/include -I/usr/local/apps/pnetcdf-1.9.0/intel-18.0/include -I/home/jherwehe/mpas/mpas_io/pio-2.4.1/intel-18.0/include -I/usr/local/apps/netcdf-4.4.1/intel-18.0/include -I/usr/local/apps/pnetcdf-1.9.0/intel-18.0/include -I../framework -I../operators -I../core_atmosphere -I../external/esmf_time_f90
+rm -f mpas.o mpas.mod
+mpiifort -D_MPI -DMPAS_ALL_TASKS_PRINT -DUSE_PIO2 -DCORE_ATMOSPHERE -DMPAS_NAMELIST_SUFFIX=atmosphere -DMPAS_EXE_NAME=atmosphere_model_test_dust -DMPAS_DEBUG -DMPAS_NATIVE_TIMERS -DMPAS_GIT_VERSION=unknown -g -convert big_endian -free -CU -CB -check all -fpe0 -fPIC -traceback -no-wrap-margin -real-size 64 -c mpas.F -I/home/jherwehe/mpas/mpas_io/pio-2.4.1/intel-18.0/include -I/usr/local/apps/netcdf-4.4.1/intel-18.0/include -I/usr/local/apps/pnetcdf-1.9.0/intel-18.0/include -I/home/jherwehe/mpas/mpas_io/pio-2.4.1/intel-18.0/include -I/usr/local/apps/netcdf-4.4.1/intel-18.0/include -I/usr/local/apps/pnetcdf-1.9.0/intel-18.0/include -I../framework -I../operators -I../core_atmosphere -I../external/esmf_time_f90
+make[4]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7/src/driver'
+make[3]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7/src/driver'
+mpiifort -g -fpe0 -traceback -o atmosphere_model_test_dust driver/*.o -L. -ldycore -lops -lframework -L/home/jherwehe/mpas/mpas_io/pio-2.4.1/intel-18.0/lib -lpiof -lpioc -L/usr/local/apps/netcdf-4.4.1/intel-18.0/lib -lnetcdff -lnetcdf -L/usr/local/apps/pnetcdf-1.9.0/intel-18.0/lib -lpnetcdf -I./external/esmf_time_f90 -L./external/esmf_time_f90 -lesmf_time -L/work/MOD3DEV/jwilliso/aaqms7/mio  -lmio -g
+make[2]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7/src'
+if [ -e src/atmosphere_model_test_dust ]; then mv src/atmosphere_model_test_dust .; fi
+( cd src/core_atmosphere; make ROOT_DIR="/work/MOD3DEV/jwilliso/aaqms7" post_build )
+make[2]: Entering directory `/work/MOD3DEV/jwilliso/aaqms7/src/core_atmosphere'
+if [ ! -e /work/MOD3DEV/jwilliso/aaqms7/default_inputs ]; then mkdir /work/MOD3DEV/jwilliso/aaqms7/default_inputs; fi
+cp default_inputs/* /work/MOD3DEV/jwilliso/aaqms7/default_inputs/.
+( cd /work/MOD3DEV/jwilliso/aaqms7/default_inputs; for FILE in `ls -1`; do if [ ! -e ../$FILE ]; then cp $FILE ../.; fi; done )
+make[2]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7/src/core_atmosphere'
+*******************************************************************************
+MPAS was built with default double-precision reals.
+Debugging is on.
+Parallel version is on.
+Papi libraries are off.
+TAU Hooks are off.
+MPAS was built without OpenMP support.
+MPAS was built with .F files.
+The native timer interface is being used
+Using the PIO 2 library.
+*******************************************************************************
+make[1]: Leaving directory `/work/MOD3DEV/jwilliso/aaqms7'

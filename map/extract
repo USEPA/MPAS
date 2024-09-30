@@ -1,0 +1,16 @@
+#!/bin/csh
+
+set file = $1
+set col1 = $2
+set col2 = $3
+
+set nitems = `wc -l $file`
+
+set n = 0
+
+while ($n < $nitems[1])
+  @ n++
+  set line = `head -n $n $file | tail -n 1 | sed 's/,/ /g' `
+
+  echo $line[$col1] $line[$col2]
+end
