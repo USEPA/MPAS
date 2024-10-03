@@ -1,0 +1,64 @@
+<streams>
+<immutable_stream name="input"
+                  type="input"
+                  filename_template="x1.40962.init.20170101.nc"
+                  input_interval="initial_only" />
+
+<immutable_stream name="restart"
+                  type="input;output"
+                  filename_template="restart.$Y-$M-$D_$h.$m.$s.nc"
+                  input_interval="initial_only"
+                  output_interval="1_00:00:00" />
+
+<immutable_stream name="fdda"
+                  type="input"
+                  filename_template="x1.40962.fdda.2017.nc"
+                  input_interval="6:00:00"/>
+
+<immutable_stream name="gfso3"
+                  type="input"
+                  filename_template="x1.40962.ozone.2017.nc"
+                  input_interval="6:00:00"/>
+
+
+<stream name="output"
+        type="output"
+        filename_template="history.$Y-$M-$D.nc"
+        filename_interval="1_00:00:00"
+        precision="single"
+        clobber_mode="overwrite"
+        output_interval="1:00:00">
+
+	<file name="stream_list.atmosphere.output"/>
+</stream>
+
+<stream name="diagnostics"
+        type="output"
+        precision="single"
+        filename_template="diag.$Y-$M-$D.nc"
+        filename_interval="1_00:00:00"
+        clobber_mode="overwrite"
+        output_interval="6:00:00" >
+
+        <file name="stream_list.atmosphere.diagnostics"/>
+</stream>
+
+<stream name="surface"
+        type="input"
+        filename_template="x1.40962.sfc_update.2017.nc"
+        filename_interval="none"
+        input_interval="06:00:00" >
+
+	<file name="stream_list.atmosphere.surface"/>
+</stream>
+
+<stream name="soilndg"
+        type="input"
+        filename_template="x1.40962.soilndg.2017.nc"
+        filename_interval="none"
+        input_interval="06:00:00" >
+
+	<file name="stream_list.atmosphere.soilndg"/>
+</stream>
+
+</streams>

@@ -26,17 +26,11 @@ build_tables
 # Restart timestamp file
 restart_timestamp
 
-# Graph files and partition files
-*.info
-*.info.part.*
-
 # Error, Output, and Abort log files
 *.out
 *.err
 *.abort
 
-# Text files (For statistical output from ocean model)
-*.txt
 !CMakeLists.txt
 
 # Directories with individual .gitignore files are:
@@ -44,17 +38,10 @@ restart_timestamp
 # src/inc (Include files don't exist until build time. But directory needs to exist.)
 # src/core_atmosphere (Directory to include object files from physics in the atmosphere core library.)
 
-# Ignore WRF Physics Files
-*.TBL
-*DATA*
-
 # Files for detecting whether builds of cores or shared framework can be reused
 .build_opts*
 
 # Ignore all runtime config files
-namelist.*
-streams.*
-stream_list.*
 
 # Intermediate files that may be produced by Intel compilers
 *.i

@@ -1,0 +1,74 @@
+&nhyd_model
+    config_init_case = 7
+    config_start_time = '2010-10-23_00:00:00'
+    config_stop_time = '2010-10-23_00:00:00'
+    config_theta_adv_order = 3
+    config_coef_3rd_order = 0.25
+/
+&dimensions
+    config_nvertlevels = 55
+    config_nsoillevels = 4
+    config_nfglevels = 38
+    config_nfgsoillevels = 4
+    config_nlandcat = 40
+/
+&data_sources
+    config_geog_data_path = '/glade/work/wrfhelp/WPS_GEOG/'
+    config_met_prefix = 'CFSR'
+    config_sfc_prefix = 'SST'
+    config_sfc_prefix_hires = 'NONE'
+    config_fg_interval = 86400
+    config_landuse_data = 'MODIFIED_IGBP_MODIS_NOAH'
+    config_frac_landuse = false
+    config_topo_data = 'GMTED2010'
+    config_vegfrac_data = 'MODIS'
+    config_albedo_data = 'MODIS'
+    config_maxsnowalbedo_data = 'MODIS'
+    config_supersample_factor = 3
+    config_use_spechumd = false
+/
+&vertical_grid
+    config_ztop = 30000.0
+    config_nsmterrain = 1
+    config_smooth_surfaces = true
+    config_dzmin = 0.3
+    config_nsm = 30
+    config_tc_vertical_grid = false
+    config_EPA_vertical_grid = false
+    config_spline_vertical_grid = false
+    config_spline_x1 = 0.0
+    config_spline_y1 = 20.0
+    config_spline_x2 = 350.0
+    config_spline_y2 = 100.0
+    config_spline_x3 = 800.0
+    config_spline_y3 = 300.0
+    config_spline_x4 = 2500.0
+    config_spline_y4 = 600.0
+    config_spline_x5 = 8000.0
+    config_spline_y5 = 600.0
+    config_spline_x6 = 16000.0
+    config_spline_y6 = 700.0
+    config_spline_x7 = 30000.0
+    config_spline_y7 = 2000.0
+    config_spline_x8 = 50000.0
+    config_spline_y8 = 4000.0
+    config_blend_bdy_terrain = false
+/
+&interpolation_control
+    config_extrap_airtemp = 'linear'
+/
+&preproc_stages
+    config_static_interp = true
+    config_native_gwd_static = true
+    config_vertical_grid = true
+    config_met_interp = true
+    config_input_sst = false
+    config_frac_seaice = true
+/
+&io
+    config_pio_num_iotasks = 0
+    config_pio_stride = 1
+/
+&decomposition
+    config_block_decomp_file_prefix = 'x1.40962.graph.info.part.'
+/
